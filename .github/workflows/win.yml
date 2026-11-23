@@ -28,6 +28,11 @@ on:
         description: 'Optional GitHub Pre-release tag (e.g. v1.2.13-fastdl.1). Leave empty to only upload workflow artifact.'
         required: false
         default: ''
+      draft:
+        description: 'Create the Pre-release as a hidden Draft first (recommended before final review).'
+        type: boolean
+        required: false
+        default: true
 
 permissions:
   contents: write
@@ -313,6 +318,7 @@ jobs:
         with:
           tag_name: ${{ inputs.release_tag }}
           name: 64Gram Download Speed Boost (${{ inputs.release_tag }})
+          draft: ${{ inputs.draft }}
           prerelease: true
           generate_release_notes: false
           files: |
