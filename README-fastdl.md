@@ -29,6 +29,7 @@ This branch adds a **restart-applied "Download speed boost"** setting in **Setti
 
 ### Upstream PR & maintenance status
 
+- **Upstream PR**: [TDesktop-x64/tdesktop#257](https://github.com/TDesktop-x64/tdesktop/pull/257)
 - **Pure C++ PR branch**: [`feat/download-speed-boost`](https://github.com/2763981847/tdesktop/tree/feat/download-speed-boost) (contains only source & localization changes, zero CI changes).
 - **Maintenance policy**: Once merged into upstream [`TDesktop-x64/tdesktop`](https://github.com/TDesktop-x64/tdesktop), Releases here will be archived in favor of official 64Gram builds (which also cover macOS and Linux). Until then, Windows x64 portable builds are provided on a best-effort basis.
 
@@ -54,7 +55,9 @@ Never blindly trust an unsigned binary with your Telegram account. Every Release
 
 ### Test scope
 
-- Tested on **Windows 11 x64** with a **Telegram Premium** account over ~420 ms RTT links (sustained **15–25 MB/s** vs **0.65 MB/s** on official Telegram Desktop).
+- Verified on **Windows 11 x64** with a **Telegram Premium** account (DC5 large channel videos):
+  - **High-RTT (~420 ms)**: `~0.97 MB/s` (Disabled `128 KB × 8`) → `~12–14 MB/s` (High `1 MB × 16`) vs `~0.65 MB/s` on official Telegram Desktop.
+  - **Low-RTT (regional route to DC5)**: `28.41 MB/s` avg / `38.64 MB/s` peak (Medium `1 MB × 8`), `31.79 MB/s` avg / `42.88 MB/s` peak (High `1 MB × 16`).
 - Feedback from **non-Premium** accounts and slower networks is welcome via GitHub Issues.
 
 ---
@@ -88,5 +91,8 @@ Never blindly trust an unsigned binary with your Telegram account. Every Release
 - **不信任第三方未签名程序？完全理解！** 你可以：
   1. 核对 `SHA256SUMS.txt` 并用 `gh attestation verify 64Gram-x64-portable.zip --repo 2763981847/tdesktop` 验证该文件确由本仓库公开 GitHub Actions 构建产出；
   2. 或直接 **Fork 本仓库 → 进入 Actions → 选择 `Windows.` → 点击 `Run workflow`（分支选 `fastdl`）**，在自己账号下零信任一键自编译。
-- **已知测试范围**：目前主要在 **Windows 11 x64 + Telegram Premium** 下完成高延迟回归验证（~420 ms RTT 下由 0.65 MB/s 提升至 15–25 MB/s）；非会员账号及弱网环境下的体感欢迎在 Issue 反馈。
-- **退场策略**：本改动同时以纯净分支 [`feat/download-speed-boost`](https://github.com/2763981847/tdesktop/tree/feat/download-speed-boost) 向上游 64Gram 提交 PR；一旦上游合并，本仓库 Release 将归档并引导回官方 64Gram。
+- **已知测试范围**：已在 **Windows 11 x64 + Telegram Premium** 下完成实测验证（DC5 大频道视频）：
+  - **高延迟链路（~420 ms RTT）**：默认档 `~0.97 MB/s` → High 档 `~12–14 MB/s`（官方 Telegram Desktop 为 `~0.65 MB/s`）；
+  - **低延迟链路（同区域直连 DC5）**：Medium 档均速 `28.41 MB/s`（峰 `38.64 MB/s`），High 档均速 `31.79 MB/s`（峰 `42.88 MB/s`）；
+  - 非会员账号及弱网环境下的体感欢迎在 Issue 反馈。
+- **退场策略**：本改动已通过纯净分支 [`feat/download-speed-boost`](https://github.com/2763981847/tdesktop/tree/feat/download-speed-boost) 向上游 64Gram 提交 PR（[TDesktop-x64/tdesktop#257](https://github.com/TDesktop-x64/tdesktop/pull/257)）；一旦上游合并，本仓库 Release 将归档并引导回官方 64Gram。
