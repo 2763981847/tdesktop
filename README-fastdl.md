@@ -29,9 +29,8 @@ This branch adds a **restart-applied "Download speed boost"** setting in **Setti
 
 ### Upstream PR & maintenance status
 
-- **Upstream PR**: [TDesktop-x64/tdesktop#257](https://github.com/TDesktop-x64/tdesktop/pull/257)
-- **Pure C++ PR branch**: [`feat/download-speed-boost`](https://github.com/2763981847/tdesktop/tree/feat/download-speed-boost) (contains only source & localization changes, zero CI changes).
-- **Maintenance policy**: Once merged into upstream [`TDesktop-x64/tdesktop`](https://github.com/TDesktop-x64/tdesktop), Releases here will be archived in favor of official 64Gram builds (which also cover macOS and Linux). Until then, Windows x64 portable builds are provided on a best-effort basis.
+- **Upstream PR**: [TDesktop-x64/tdesktop#257](https://github.com/TDesktop-x64/tdesktop/pull/257) — **Merged** on 2026-11-27 ([`71d935b`](https://github.com/TDesktop-x64/tdesktop/commit/71d935bcedec83d6b6eacc2bd8be2216805219ca)) 🎉
+- **Maintenance policy**: Now that the change is merged into upstream [`TDesktop-x64/tdesktop`](https://github.com/TDesktop-x64/tdesktop), no further builds will be published here. The existing Windows x64 portable pre-release remains temporarily available until the next official 64Gram release ships (which will cover Windows, macOS, and Linux), after which it will be archived.
 
 ### Trust, security & verification
 
@@ -44,7 +43,7 @@ Never blindly trust an unsigned binary with your Telegram account. Every Release
    sha256sum -c SHA256SUMS.txt
 
    # Verify GitHub Actions build provenance attestation (requires GitHub CLI)
-   gh attestation verify 64Gram-x64-portable.zip --repo 2763981847/tdesktop
+   gh attestation verify 64Gram-x64-portable.zip --repo Oreki-Rin/tdesktop
    ```
 3. **100% self-buildable**: Fork this repository → open the **Actions** tab → select **Windows.** → click **Run workflow** on branch `fastdl` to produce your own binary directly under your own GitHub account.
 
@@ -89,10 +88,10 @@ Never blindly trust an unsigned binary with your Telegram account. Every Release
 
 - **仅提供 Windows x64 便携版**：解压 `64Gram-x64-portable.zip` 得到 `64Gram.exe`（可与原 64Gram 便携目录的 `tdata` 共用；已编译期关闭自动更新，不会误被官方更新覆盖）。macOS / Linux 将在上游 PR 合并后由 64Gram 官方 CI 统一提供。
 - **不信任第三方未签名程序？完全理解！** 你可以：
-  1. 核对 `SHA256SUMS.txt` 并用 `gh attestation verify 64Gram-x64-portable.zip --repo 2763981847/tdesktop` 验证该文件确由本仓库公开 GitHub Actions 构建产出；
+  1. 核对 `SHA256SUMS.txt` 并用 `gh attestation verify 64Gram-x64-portable.zip --repo Oreki-Rin/tdesktop` 验证该文件确由本仓库公开 GitHub Actions 构建产出；
   2. 或直接 **Fork 本仓库 → 进入 Actions → 选择 `Windows.` → 点击 `Run workflow`（分支选 `fastdl`）**，在自己账号下零信任一键自编译。
 - **已知测试范围**：已在 **Windows 11 x64 + Telegram Premium** 下完成实测验证（DC5 大频道视频）：
   - **高延迟链路（~420 ms RTT）**：默认档 `~0.97 MB/s` → High 档 `~12–14 MB/s`（官方 Telegram Desktop 为 `~0.65 MB/s`）；
   - **低延迟链路（同区域直连 DC5）**：Medium 档均速 `28.41 MB/s`（峰 `38.64 MB/s`），High 档均速 `31.79 MB/s`（峰 `42.88 MB/s`）；
   - 非会员账号及弱网环境下的体感欢迎在 Issue 反馈。
-- **退场策略**：本改动已通过纯净分支 [`feat/download-speed-boost`](https://github.com/2763981847/tdesktop/tree/feat/download-speed-boost) 向上游 64Gram 提交 PR（[TDesktop-x64/tdesktop#257](https://github.com/TDesktop-x64/tdesktop/pull/257)）；一旦上游合并，本仓库 Release 将归档并引导回官方 64Gram。
+- **退场状态**：本改动已于 2026-11-27 **正式合入上游 64Gram**（[TDesktop-x64/tdesktop#257](https://github.com/TDesktop-x64/tdesktop/pull/257)，commit [`71d935b`](https://github.com/TDesktop-x64/tdesktop/commit/71d935bcedec83d6b6eacc2bd8be2216805219ca)），本仓库不再继续出包；现有 Windows 便携预发布版仅临时保留至官方下个正式版发布，届时可直接切回官方 64Gram。

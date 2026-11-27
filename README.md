@@ -1,6 +1,6 @@
 ﻿# 64Gram – Based on [Telegram Desktop](https://github.com/telegramdesktop/tdesktop)
 
-> **Fork note (`fastdl` branch)**: This branch adds a configurable **Download speed boost** (`128 KB × 8` / `1 MB × 8` / `1 MB × 16`) for high-latency links, with multi-chunk CDN hash validation and cache compatibility fixes. See [**README-fastdl.md**](README-fastdl.md) (English & 中文) for details, verification, and self-build instructions.
+> **Fork note (`fastdl` branch — Merged upstream)**: This feature has been **merged into upstream 64Gram** ([TDesktop-x64/tdesktop#257](https://github.com/TDesktop-x64/tdesktop/pull/257), commit [`71d935b`](https://github.com/TDesktop-x64/tdesktop/commit/71d935bcedec83d6b6eacc2bd8be2216805219ca)). This branch and its Windows portable pre-release remain as a temporary bridge until the next official 64Gram release ships. See [**README-fastdl.md**](README-fastdl.md) (English & 中文) for details and verification.
 
 The source code is published under GPLv3 with OpenSSL exception, the license is available [here][license].
 
